@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        // Set the default timezone to Philippine time
+        date_default_timezone_set('Asia/Manila');
+
+        // Set Carbon locale (Carbon v2 uses setLocale instead of setDefaultLocale)
+        \Carbon\Carbon::setLocale('en');
+
+        // Configure pagination view
+        \Illuminate\Pagination\Paginator::defaultView('pagination::bootstrap-4');
+        \Illuminate\Pagination\Paginator::defaultSimpleView('pagination::simple-bootstrap-4');
+    }
+}
